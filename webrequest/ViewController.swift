@@ -7,19 +7,34 @@
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var webView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        loadRequest(urlString: "https://developer.apple.com/swift/")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func loadSwift(_ sender: UIButton) {
+        loadRequest(urlString: "https://developer.apple.com/swift/")
     }
-
-
+    
+    @IBAction func loadGossip(_ sender: UIButton) {
+        loadRequest(urlString: "http://www.eonline.com/news")
+    }
+    
+    @IBAction func loadAtlas(_ sender: UIButton) {
+        loadRequest(urlString: "http://flagpedia.net/index")
+    }
+    
+    func loadRequest(urlString: String) {
+        let url = URL(string: urlString)!
+        let request = URLRequest(url: url)
+        webView.loadRequest(request)
+    }
 }
 
